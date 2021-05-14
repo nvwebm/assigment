@@ -1,0 +1,55 @@
+<section>
+  <form
+    id="addingForm"
+    #addingForm="ngForm"
+    (ngSubmit)="onFormSubmitted()"
+  >
+    <div class="actions" *ngIf="!currentlyAdding">
+      <button  type="button" (click)="onAddReviewClicked()" class="add-button btn">
+        Add Review
+      </button>
+    </div>
+    <div class="actions" *ngIf="currentlyAdding">
+      <button type="button" (click)="onCancelReviewClicked()" class="reset-button btn">
+        Cancel Adding
+      </button>
+      <button
+        class="submit-button btn"
+        [disabled]="canSubmitAddingForm(addingForm)"
+      >
+        Submit
+      </button>
+    </div>
+    <div *ngIf="currentlyAdding" class="form"
+    >
+    <input
+      type="text"
+      placeholder="Title"
+      [ngClass]="{
+        'invlalid-input': showFieldBorderWarning(title)
+      }"
+      class="form-input title-input"
+      #title="ngModel"
+      name="title"
+      [(ngModel)]="review.title"
+      required
+      minlength="5"
+    />
+    <span class="input-disclaimer">Required, min length: 5 chars</span>
+    <textarea
+      class="form-input description-input"
+      placeholder="description"
+      [(ngModel)]="review.description"
+      required
+      minlength="10"
+      name="description"
+      #description="ngModel"
+      [ngClass]="{
+        'invlalid-input': showFieldBorderWarning(description)
+      }"
+    >
+    </textarea>
+    <span class="input-disclaimer">Required, min length: 10 chars</span>
+  </div>
+  </form>
+</section>

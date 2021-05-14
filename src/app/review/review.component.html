@@ -1,0 +1,7 @@
+<section *ngIf="review">
+    <h5>{{review.title}}</h5>
+    <p>{{review.description}}</p>
+    <div class="actions">
+        <button type="button" (click)="onDeleteButtonClicked()">Delete</button>    
+    </div>
+</section>
